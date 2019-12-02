@@ -1,0 +1,2 @@
+include ':app', ':module_sp', ':module_deal', ':common', ':module_main'
+rootProject.name='AssemDemo'
