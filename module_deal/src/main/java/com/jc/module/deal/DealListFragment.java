@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,9 +39,21 @@ public class DealListFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String msg = bundle.getString("key");
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @OnClick(R2.id.deal_button)
     public void onViewClicked() {
-        ARouter.getInstance().build("/sp/main").navigation();
+        Bundle dealBundle = new Bundle();
+        dealBundle.putString("key", "来自deal_DealListFragment");
+        ARouter.getInstance().build("/sp/main").with(dealBundle).navigation();
     }
 
     @Override

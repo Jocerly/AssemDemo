@@ -1,7 +1,9 @@
 package com.jc.module.deal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -24,12 +26,18 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deal_activity_main);
         ButterKnife.bind(this);
-        ARouter.getInstance().inject(this);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra("key")) {
+            String msg = intent.getStringExtra("key");
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @OnClick(R2.id.deal_button)
     public void onViewClicked() {
-        ARouter.getInstance().build("/sp/main").navigation();
+        Bundle dealBundle = new Bundle();
+        dealBundle.putString("key", "来自deal_MainActivity");
+        ARouter.getInstance().build("/sp/main").with(dealBundle).navigation();
     }
 }

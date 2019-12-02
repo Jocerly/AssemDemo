@@ -50,6 +50,7 @@ public class LoginActivity extends BaseActivity {
         } else {
             UserHelp.setUserInfo(name, pwd);
             skikToNewActivity(FMActivity.class);
+//            skikToNewActivity(MainActivity.class);
         }
     }
 }

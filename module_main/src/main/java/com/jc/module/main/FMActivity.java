@@ -45,14 +45,16 @@ public class FMActivity extends BaseActivity implements ViewPager.OnPageChangeLi
         setContentView(R.layout.main_activity_fm);
         ButterKnife.bind(this);
 
-
         initFragment();
     }
 
     private void initFragment() {
+        Bundle dealBundle = new Bundle();
+        dealBundle.putString("key", "value");
         fManager = getSupportFragmentManager();
         fragmentDeal = (BaseFragment) ARouter.getInstance().build("/deal/list").navigation();
         fragmentSp = (BaseFragment) ARouter.getInstance().build("/sp/list").navigation();
+        fragmentDeal.setArguments(dealBundle);
 
         listFragments.clear();
         listFragments.add(fragmentDeal);

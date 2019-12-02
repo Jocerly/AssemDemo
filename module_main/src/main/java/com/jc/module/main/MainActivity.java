@@ -34,12 +34,16 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R2.id.main_deal)
     public void onViewClickedDeal() {
-        ARouter.getInstance().build("/deal/main").navigation();
+        Bundle dealBundle = new Bundle();
+        dealBundle.putString("key", "来自main_MainActivity");
+        ARouter.getInstance().build("/deal/main").with(dealBundle).navigation();
     }
 
     @OnClick(R2.id.main_sp)
     public void onViewClickedSp() {
-        ARouter.getInstance().build("/sp/main").navigation();
+        Bundle dealBundle = new Bundle();
+        dealBundle.putString("key", "来自main_MainActivity");
+        ARouter.getInstance().build("/sp/main").with(dealBundle).navigation();
     }
 
     @OnClick(R2.id.main_button4)
